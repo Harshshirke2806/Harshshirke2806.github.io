@@ -1,32 +1,223 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Resume</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Shirke | IoT & Security</title>
     <style>
-        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
-        h1 { border-bottom: 2px solid #333; }
-        h2 { color: #555; }
-        .contact-info { margin-bottom: 20px; }
+        /* --- COLOR PALETTE (Monochromatic Blue-Slate) --- */
+        :root {
+            --bg-color: #0f172a;       /* Very Dark Slate */
+            --card-bg: #1e293b;        /* Dark Slate */
+            --card-hover: #334155;     /* Lighter Slate */
+            --accent: #38bdf8;         /* Electric Blue */
+            --text-main: #f1f5f9;      /* White-ish */
+            --text-muted: #94a3b8;     /* Grey */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* --- THE GRID LAYOUT (The "Widget" System) --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* --- WIDGET STYLING --- */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            padding: 25px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* The "Moving" Effect on Hover */
+        .card:hover {
+            transform: translateY(-8px); /* Moves up */
+            background-color: var(--card-hover);
+            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.3); /* Blue glow */
+            border-color: var(--accent);
+        }
+
+        /* --- SPECIFIC WIDGET SIZES --- */
+        .col-span-2 { grid-column: span 2; }
+        .col-span-4 { grid-column: span 4; }
+        .row-span-2 { grid-row: span 2; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .col-span-2, .col-span-4 { grid-column: span 1; }
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1 { font-size: 2.5rem; letter-spacing: -1px; }
+        h2 { font-size: 1.2rem; color: var(--accent); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        h3 { font-size: 1.2rem; margin-bottom: 5px; }
+        p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+        .sub { font-size: 0.9rem; opacity: 0.7; }
+
+        /* --- SPECIAL WIDGET: SKILLS MARQUEE (Moving Text) --- */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+        }
+        .skill-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 50px;
+            color: var(--accent);
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- SPECIAL WIDGET: STATUS PULSE --- */
+        .status-dot {
+            height: 12px; width: 12px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 1);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        /* Links */
+        a { text-decoration: none; color: inherit; }
+        .btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: #0f172a;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Your Name Here</h1>
-    <div class="contact-info">
-        <p>Email: youremail@example.com | <a href="https://linkedin.com/in/yourprofile">LinkedIn</a></p>
+    <div class="bento-grid">
+
+        <div class="card col-span-2 row-span-2">
+            <div>
+                <div style="display:flex; align-items:center; margin-bottom: 15px;">
+                    <span class="status-dot"></span> <span style="color:var(--text-muted); font-size:0.9rem;">Open to Internships (Dec 2025)</span>
+                </div>
+                <h1>Harsh Abhijeet Shirke</h1>
+                <p style="font-size: 1.1rem; margin-top: 10px;">
+                    IoT Specialist & Cybersecurity Enthusiast.<br>
+                    Turning hardware into intelligence and securing the connection.
+                </p>
+            </div>
+            <div style="margin-top: 20px;">
+                <p class="sub">📍 Ulwe, Navi Mumbai | 🎓 B.E. Computer Science</p>
+                <a href="mailto:harshshirke2005@gmail.com" class="btn">Contact Me</a>
+            </div>
+        </div>
+
+        <div class="card col-span-2">
+            <h2>Education</h2>
+            <h3>B.E. Computer Science (IoT)</h3>
+            <p>SIES GST, Navi Mumbai | CGPA: 7.5 (Current)</p>
+            <p class="sub" style="margin-top:5px;">Relevant Coursework: Cryptography, Computer Networks, IoT Architecture.</p>
+        </div>
+
+        <div class="card col-span-4" style="padding: 15px 0; justify-content: center;">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">IoT Architecture</span>
+                    <span class="skill-tag">Ethical Hacking</span>
+                    <span class="skill-tag">Burp Suite</span>
+                    <span class="skill-tag">Wireshark</span>
+                    <span class="skill-tag">Penetration Testing</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">IoT Architecture</span>
+                    <span class="skill-tag">Ethical Hacking</span>
+                    <span class="skill-tag">Burp Suite</span>
+                    <span class="skill-tag">Wireshark</span>
+                    <span class="skill-tag">Penetration Testing</span>
+                    <span class="skill-tag">Java</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-span-2">
+            <h2>Featured Project</h2>
+            <h3>IoT Healthcare System</h3>
+            <p>Developed a monitoring system that automates diagnostics and sends real-time patient updates.</p>
+            <p class="sub" style="margin-top:10px;">Tech: IoT Sensors, Cloud Messaging, Python</p>
+        </div>
+
+        <div class="card col-span-2">
+            <h2>Security Tool</h2>
+            <h3>Auto-Pentest Framework</h3>
+            <p>Designed an automated penetration testing framework to speed up security assessments.</p>
+            <p class="sub" style="margin-top:10px;">Tech: Python Scripting, Network Protocols</p>
+        </div>
+
+        <div class="card col-span-2">
+            <h2>Experience</h2>
+            <h3>Internship Role Name</h3>
+            <p class="sub">Company Name | Date - Date</p>
+            <ul style="padding-left: 20px; color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
+                <li>Describe your first major task here.</li>
+                <li>Describe what tools or tech you used here.</li>
+            </ul>
+        </div>
+
+        <div class="card col-span-2">
+            <h2>Achievements</h2>
+            <div style="margin-bottom: 10px;">
+                <h3>🥉 3rd Place - CTF Competition</h3>
+                <p class="sub">Intercollege Cybersecurity Event (Feb 2025)</p>
+            </div>
+            <div>
+                <h3>🏆 Semifinalist - Hack Aurora</h3>
+                <p class="sub">VJTI (Dec 2024)</p>
+            </div>
+        </div>
+
     </div>
-
-    <h2>Experience</h2>
-    <h3>Job Title - Company Name</h3>
-    <p><i>Jan 2023 - Present</i></p>
-    <ul>
-        <li>Accomplished X using Y skill.</li>
-        <li>Led a team of Z people.</li>
-    </ul>
-
-    <h2>Education</h2>
-    <h3>Degree Name - University</h3>
-    <p>Graduated: 2022</p>
 
 </body>
 </html>
